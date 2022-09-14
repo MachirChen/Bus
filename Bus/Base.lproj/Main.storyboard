@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Menu Table View Controller-->
+        <!--附近公車-->
         <scene sceneID="qf0-b0-zKb">
             <objects>
                 <tableViewController id="yUO-yV-mWh" customClass="MenuTableViewController" customModule="Bus" customModuleProvider="target" sceneMemberID="viewController">
@@ -53,7 +53,7 @@
                             <outlet property="delegate" destination="yUO-yV-mWh" id="k0l-jv-CCx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Ne1-VB-MpW"/>
+                    <navigationItem key="navigationItem" title="附近公車" id="Ne1-VB-MpW"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9W-sC-i5w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -67,13 +67,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2Nl-4c-319">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2Nl-4c-319">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KvB-Zk-reQ"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                        <constraints>
+                            <constraint firstItem="KvB-Zk-reQ" firstAttribute="trailing" secondItem="2Nl-4c-319" secondAttribute="trailing" id="5Hf-Lk-LTu"/>
+                            <constraint firstItem="2Nl-4c-319" firstAttribute="leading" secondItem="KvB-Zk-reQ" secondAttribute="leading" id="5aF-A3-EpA"/>
+                            <constraint firstItem="KvB-Zk-reQ" firstAttribute="bottom" secondItem="2Nl-4c-319" secondAttribute="bottom" id="PFj-DS-gGP"/>
+                            <constraint firstItem="2Nl-4c-319" firstAttribute="top" secondItem="KvB-Zk-reQ" secondAttribute="top" id="zNq-eX-09y"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hN6-hW-ubR"/>
                     <connections>
@@ -124,6 +129,9 @@
     </scenes>
     <resources>
         <image name="map" catalog="system" width="128" height="110"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -16,6 +16,7 @@ class BusStopMapViewController: UIViewController, CLLocationManagerDelegate, MKM
     var busStopData = [BusStopResponse]()
     var targetCoordinate = CLLocationCoordinate2D()
     var busStopApiUrlStr = ""
+    var button = MKUserTrackingButton()
     
     @IBOutlet weak var myMapView: MKMapView!
     
@@ -43,12 +44,30 @@ class BusStopMapViewController: UIViewController, CLLocationManagerDelegate, MKM
                 }
             }
         }
+        setupLocationButton()
         setLocationManager()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if locationManager.authorizationStatus == .authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         locationManager.stopUpdatingLocation()
+    }
+    
+    func setupLocationButton() {
+        let fullScreenSize = UIScreen.main.bounds
+        button.mapView = myMapView
+        button.backgroundColor = .black
+        button.tintColor = .white
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.center = CGPoint(x: fullScreenSize.width * 0.9, y: fullScreenSize.height * 0.75)
+        myMapView.addSubview(button)
     }
         
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

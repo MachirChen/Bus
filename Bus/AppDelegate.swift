@@ -6,14 +6,22 @@
 //
 
 import UIKit
+import CoreLocation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+    
+    let locationManager = CLLocationManager()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        locationManager.requestWhenInUseAuthorization()
+        MenuController.shared.getToken(urlStr: MenuController.shared.tokenUrlStr)
+        if let location = locationManager.location?.coordinate {
+            print(location)
+        } else {
+            print("使用者無開啟定位權限(AppDelegate.swift)")
+        }
         return true
     }
 

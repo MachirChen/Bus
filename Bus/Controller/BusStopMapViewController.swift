@@ -40,7 +40,7 @@ class BusStopMapViewController: UIViewController, CLLocationManagerDelegate, MKM
                     print(self.busStopData)
                     self.myMapView.addAnnotations(self.busStopAnnotations)
                 case .failure(let error):
-                    print(error)
+                    print("fetchData()-\(error)")
                 }
             }
         }
@@ -229,7 +229,7 @@ class BusStopMapViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        print("func locationManager-\(error)")
     }
     
     

@@ -14,9 +14,7 @@ struct BusStopResponse: Codable {
     let StopName: StopNameType
     let StopPosition: StopPositionType
     let StopAddress: String
-    let Bearing: String
     let StationID: String
-    let LocationCityCode: String
     let UpdateTime: String
     let VersionID: Int
     

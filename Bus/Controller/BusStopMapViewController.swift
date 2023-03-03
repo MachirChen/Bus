@@ -24,7 +24,7 @@ class BusStopMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
         setBusStopApiUrl()
-        MenuController.shared.fetchData(urlStr: self.busStopApiUrlStr) { result in
+        MenuController.shared.fetchBusStopData(urlStr: self.busStopApiUrlStr) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let busStopData):

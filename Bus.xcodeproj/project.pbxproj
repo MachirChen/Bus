@@ -7,10 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250C0D0129AF672400CA3C18 /* THSROToDFareResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250C0D0029AF672400CA3C18 /* THSROToDFareResponse.swift */; };
 		252827C228CA378000A15288 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252827C128CA378000A15288 /* MenuTableViewController.swift */; };
 		252E3A7B28CA4956006B4EDB /* BusStopMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252E3A7A28CA4956006B4EDB /* BusStopMapViewController.swift */; };
 		252E3A7D28CB2454006B4EDB /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252E3A7C28CB2454006B4EDB /* MenuController.swift */; };
 		252E3A7F28CB2EB2006B4EDB /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252E3A7E28CB2EB2006B4EDB /* TokenResponse.swift */; };
+		25400CE429AC75A8006AFCDC /* THSRTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25400CE329AC75A8006AFCDC /* THSRTimeTableViewController.swift */; };
+		25400CE629AC7B16006AFCDC /* THSRTimeTableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25400CE529AC7B16006AFCDC /* THSRTimeTableTableViewCell.swift */; };
+		25B437B42983DB6900488062 /* THSRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B437B32983DB6900488062 /* THSRViewController.swift */; };
+		25B437B62983E65500488062 /* StationID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B437B52983E65500488062 /* StationID.swift */; };
+		25B437B8298440C700488062 /* THSRDailyTimetableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B437B7298440C700488062 /* THSRDailyTimetableResponse.swift */; };
+		25B437BA298AA1DD00488062 /* THSRDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B437B9298AA1DD00488062 /* THSRDatePickerViewController.swift */; };
 		25BBBED528C0FED2007D08C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BBBED428C0FED2007D08C7 /* AppDelegate.swift */; };
 		25BBBED728C0FED2007D08C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BBBED628C0FED2007D08C7 /* SceneDelegate.swift */; };
 		25BBBEDC28C0FED2007D08C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25BBBEDA28C0FED2007D08C7 /* Main.storyboard */; };
@@ -19,13 +26,23 @@
 		25C0BDE128CDBD0000354474 /* BusStopResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C0BDE028CDBD0000354474 /* BusStopResponse.swift */; };
 		25C0BDE428CF4B8900354474 /* Geohash in Frameworks */ = {isa = PBXBuildFile; productRef = 25C0BDE328CF4B8900354474 /* Geohash */; };
 		25C0BE0B28D24BA500354474 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C0BE0A28D24BA500354474 /* MapKit.framework */; };
+		25F5E70229A7949100F2FA3F /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F5E70129A7949100F2FA3F /* Station.swift */; };
+		25F5E70429AA243600F2FA3F /* THSRDailyTimetableTrainDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F5E70329AA243600F2FA3F /* THSRDailyTimetableTrainDates.swift */; };
+		25F5E70629AB66D600F2FA3F /* THSRDailyTimeTableStationToStationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F5E70529AB66D600F2FA3F /* THSRDailyTimeTableStationToStationResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		250C0D0029AF672400CA3C18 /* THSROToDFareResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSROToDFareResponse.swift; sourceTree = "<group>"; };
 		252827C128CA378000A15288 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		252E3A7A28CA4956006B4EDB /* BusStopMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopMapViewController.swift; sourceTree = "<group>"; };
 		252E3A7C28CB2454006B4EDB /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		252E3A7E28CB2EB2006B4EDB /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
+		25400CE329AC75A8006AFCDC /* THSRTimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRTimeTableViewController.swift; sourceTree = "<group>"; };
+		25400CE529AC7B16006AFCDC /* THSRTimeTableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRTimeTableTableViewCell.swift; sourceTree = "<group>"; };
+		25B437B32983DB6900488062 /* THSRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRViewController.swift; sourceTree = "<group>"; };
+		25B437B52983E65500488062 /* StationID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationID.swift; sourceTree = "<group>"; };
+		25B437B7298440C700488062 /* THSRDailyTimetableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRDailyTimetableResponse.swift; sourceTree = "<group>"; };
+		25B437B9298AA1DD00488062 /* THSRDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRDatePickerViewController.swift; sourceTree = "<group>"; };
 		25BBBED128C0FED2007D08C7 /* Bus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25BBBED428C0FED2007D08C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25BBBED628C0FED2007D08C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +52,9 @@
 		25BBBEE228C0FED3007D08C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25C0BDE028CDBD0000354474 /* BusStopResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopResponse.swift; sourceTree = "<group>"; };
 		25C0BE0A28D24BA500354474 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		25F5E70129A7949100F2FA3F /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		25F5E70329AA243600F2FA3F /* THSRDailyTimetableTrainDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRDailyTimetableTrainDates.swift; sourceTree = "<group>"; };
+		25F5E70529AB66D600F2FA3F /* THSRDailyTimeTableStationToStationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRDailyTimeTableStationToStationResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,9 +95,7 @@
 				25E2397628C10083001768ED /* Model */,
 				25BBBED428C0FED2007D08C7 /* AppDelegate.swift */,
 				25BBBED628C0FED2007D08C7 /* SceneDelegate.swift */,
-				25BBBEDA28C0FED2007D08C7 /* Main.storyboard */,
 				25BBBEDD28C0FED3007D08C7 /* Assets.xcassets */,
-				25BBBEDF28C0FED3007D08C7 /* LaunchScreen.storyboard */,
 				25BBBEE228C0FED3007D08C7 /* Info.plist */,
 			);
 			path = Bus;
@@ -97,6 +115,12 @@
 				252E3A7C28CB2454006B4EDB /* MenuController.swift */,
 				252E3A7E28CB2EB2006B4EDB /* TokenResponse.swift */,
 				25C0BDE028CDBD0000354474 /* BusStopResponse.swift */,
+				25B437B52983E65500488062 /* StationID.swift */,
+				25B437B7298440C700488062 /* THSRDailyTimetableResponse.swift */,
+				25F5E70129A7949100F2FA3F /* Station.swift */,
+				25F5E70329AA243600F2FA3F /* THSRDailyTimetableTrainDates.swift */,
+				25F5E70529AB66D600F2FA3F /* THSRDailyTimeTableStationToStationResponse.swift */,
+				250C0D0029AF672400CA3C18 /* THSROToDFareResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -104,6 +128,8 @@
 		25E2397728C10092001768ED /* View */ = {
 			isa = PBXGroup;
 			children = (
+				25BBBEDA28C0FED2007D08C7 /* Main.storyboard */,
+				25BBBEDF28C0FED3007D08C7 /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -113,6 +139,10 @@
 			children = (
 				252827C128CA378000A15288 /* MenuTableViewController.swift */,
 				252E3A7A28CA4956006B4EDB /* BusStopMapViewController.swift */,
+				25B437B32983DB6900488062 /* THSRViewController.swift */,
+				25B437B9298AA1DD00488062 /* THSRDatePickerViewController.swift */,
+				25400CE329AC75A8006AFCDC /* THSRTimeTableViewController.swift */,
+				25400CE529AC7B16006AFCDC /* THSRTimeTableTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -195,11 +225,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				25C0BDE128CDBD0000354474 /* BusStopResponse.swift in Sources */,
+				25B437B62983E65500488062 /* StationID.swift in Sources */,
+				25B437BA298AA1DD00488062 /* THSRDatePickerViewController.swift in Sources */,
 				252E3A7B28CA4956006B4EDB /* BusStopMapViewController.swift in Sources */,
+				25F5E70629AB66D600F2FA3F /* THSRDailyTimeTableStationToStationResponse.swift in Sources */,
+				25F5E70429AA243600F2FA3F /* THSRDailyTimetableTrainDates.swift in Sources */,
 				252E3A7D28CB2454006B4EDB /* MenuController.swift in Sources */,
+				25B437B8298440C700488062 /* THSRDailyTimetableResponse.swift in Sources */,
+				250C0D0129AF672400CA3C18 /* THSROToDFareResponse.swift in Sources */,
+				25B437B42983DB6900488062 /* THSRViewController.swift in Sources */,
+				25400CE429AC75A8006AFCDC /* THSRTimeTableViewController.swift in Sources */,
 				25BBBED528C0FED2007D08C7 /* AppDelegate.swift in Sources */,
 				252827C228CA378000A15288 /* MenuTableViewController.swift in Sources */,
+				25400CE629AC7B16006AFCDC /* THSRTimeTableTableViewCell.swift in Sources */,
 				25BBBED728C0FED2007D08C7 /* SceneDelegate.swift in Sources */,
+				25F5E70229A7949100F2FA3F /* Station.swift in Sources */,
 				252E3A7F28CB2EB2006B4EDB /* TokenResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,7 +400,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.machir.busapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -389,7 +429,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.machir.busapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

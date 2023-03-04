@@ -186,11 +186,11 @@ class THSRViewController: UIViewController {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "THSRTimeTableViewController" {
             if userDefault.value(forKey: "userStartStation") as! String == userDefault.value(forKey: "userStopStation") as! String {
-                let alert = UIAlertController(title: "", message: "請選擇不同的起迄站", preferredStyle: .alert)
+                let alert = UIAlertController(title: "溫馨提醒", message: "請選擇不同的起迄站", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "確定", style: .default))
                 present(alert, animated: true)
             } else if data.isEmpty {
-                let alert = UIAlertController(title: "", message: "您選擇的時段已無班次，請重新查詢", preferredStyle: .alert)
+                let alert = UIAlertController(title: "溫馨提醒", message: "您選擇的時段已無班次，請重新查詢", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "確定", style: .default))
                 present(alert, animated: true)
                 return false

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iAg-1c-7qk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r0A-nw-htM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--附近公車-->
+        <!--主選單-->
         <scene sceneID="qf0-b0-zKb">
             <objects>
                 <tableViewController id="yUO-yV-mWh" customClass="MenuTableViewController" customModule="Bus" customModuleProvider="target" sceneMemberID="viewController">
@@ -78,13 +78,13 @@
                             <outlet property="delegate" destination="yUO-yV-mWh" id="k0l-jv-CCx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="附近公車" id="Ne1-VB-MpW"/>
+                    <navigationItem key="navigationItem" title="主選單" id="Ne1-VB-MpW"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9W-sC-i5w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3682.608695652174" y="97.767857142857139"/>
         </scene>
-        <!--View Controller-->
+        <!--高鐵-->
         <scene sceneID="jGu-wo-AEW">
             <objects>
                 <viewController id="47b-uu-w0t" customClass="THSRViewController" customModule="Bus" customModuleProvider="target" sceneMemberID="viewController">
@@ -93,64 +93,64 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kC0-ov-Zia">
-                                <rect key="frame" x="10" y="102" width="394" height="89"/>
+                                <rect key="frame" x="10" y="102" width="394" height="129"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="起                 站" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQI-2D-utf">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="89"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="起                 站" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQI-2D-utf">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="129"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                         <color key="textColor" systemColor="systemGray3Color"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="geR-6l-Sab">
-                                        <rect key="frame" x="10" y="10" width="374" height="69"/>
+                                        <rect key="frame" x="10" y="10" width="374" height="109"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WyP-Sf-rR9">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="34.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="54.5"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="990" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOd-DU-hZ5">
-                                                        <rect key="frame" x="0.0" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="南港"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="南 港"/>
                                                         <connections>
                                                             <action selector="selectStartStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="0NP-cP-mK9"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYE-H3-tpL">
-                                                        <rect key="frame" x="62.5" y="0.0" width="62" height="34.5"/>
+                                                        <rect key="frame" x="62.5" y="0.0" width="62" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="臺北"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="臺 北"/>
                                                         <connections>
                                                             <action selector="selectStartStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="sYs-0u-wJf"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1010" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pjg-Gm-RBS">
-                                                        <rect key="frame" x="124.5" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="124.5" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="板橋"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="板 橋"/>
                                                         <connections>
                                                             <action selector="selectStartStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="A0d-Xo-Ukf"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1020" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NqH-dg-rvj">
-                                                        <rect key="frame" x="187" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="187" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="桃園"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="桃 園"/>
                                                         <connections>
                                                             <action selector="selectStartStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="0S2-ky-7Vx"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1030" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cId-XT-Kph">
-                                                        <rect key="frame" x="249.5" y="0.0" width="62" height="34.5"/>
+                                                        <rect key="frame" x="249.5" y="0.0" width="62" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="新竹"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="新 竹"/>
                                                         <connections>
                                                             <action selector="selectStartStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="MrE-pa-4Hr"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1035" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mVU-Dy-Qzg">
-                                                        <rect key="frame" x="311.5" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="311.5" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="苗栗"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="苗 栗"/>
                                                         <connections>
                                                             <action selector="selectStartStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="wXh-BK-S10"/>
                                                         </connections>
@@ -158,52 +158,52 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Gco-C2-Jvw">
-                                                <rect key="frame" x="0.0" y="34.5" width="374" height="34.5"/>
+                                                <rect key="frame" x="0.0" y="54.5" width="374" height="54.5"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="1040" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zna-tz-sqr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="臺中"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="臺 中"/>
                                                         <connections>
                                                             <action selector="selectStartStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="4Ue-YR-j3J"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1043" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqS-cE-OB5">
-                                                        <rect key="frame" x="62.5" y="0.0" width="62" height="34.5"/>
+                                                        <rect key="frame" x="62.5" y="0.0" width="62" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="彰化"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="彰 化"/>
                                                         <connections>
                                                             <action selector="selectStartStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="oBy-Gg-bqd"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1047" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEQ-c1-Ewz">
-                                                        <rect key="frame" x="124.5" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="124.5" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="雲林"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="雲 林"/>
                                                         <connections>
                                                             <action selector="selectStartStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="sIu-UM-4Ug"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1050" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3D-Ut-cvE">
-                                                        <rect key="frame" x="187" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="187" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="嘉義"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="嘉 義"/>
                                                         <connections>
                                                             <action selector="selectStartStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="kLd-u1-Ho9"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1060" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eq6-aA-hR5">
-                                                        <rect key="frame" x="249.5" y="0.0" width="62" height="34.5"/>
+                                                        <rect key="frame" x="249.5" y="0.0" width="62" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="臺南"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="臺 南"/>
                                                         <connections>
                                                             <action selector="selectStartStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="YLl-E4-9db"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1070" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZG6-0h-xyD">
-                                                        <rect key="frame" x="311.5" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="311.5" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="左營"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="左 營"/>
                                                         <connections>
                                                             <action selector="selectStartStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="oa9-ju-qWV"/>
                                                         </connections>
@@ -226,64 +226,64 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lZy-lq-0vO">
-                                <rect key="frame" x="10" y="265" width="394" height="89"/>
+                                <rect key="frame" x="10" y="305" width="394" height="129"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="迄                 站" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G32-pf-fXS">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="89"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="迄                 站" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G32-pf-fXS">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="129"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                         <color key="textColor" systemColor="systemGray3Color"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="l95-Cd-bKb">
-                                        <rect key="frame" x="10" y="10" width="374" height="69"/>
+                                        <rect key="frame" x="10" y="10" width="374" height="109"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GRW-6a-KYl">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="34.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="54.5"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="990" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdq-rz-Gf8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="南港"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="南 港"/>
                                                         <connections>
                                                             <action selector="selectStopStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="X0s-7J-La2"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbm-i0-8n9">
-                                                        <rect key="frame" x="62.5" y="0.0" width="62" height="34.5"/>
+                                                        <rect key="frame" x="62.5" y="0.0" width="62" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="臺北"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="臺 北"/>
                                                         <connections>
                                                             <action selector="selectStopStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="Orz-sR-za1"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1010" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4O5-cC-9x1">
-                                                        <rect key="frame" x="124.5" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="124.5" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="板橋"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="板 橋"/>
                                                         <connections>
                                                             <action selector="selectStopStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="bby-b9-1kh"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1020" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7a-o0-Cvy">
-                                                        <rect key="frame" x="187" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="187" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="桃園"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="桃 園"/>
                                                         <connections>
                                                             <action selector="selectStopStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="akr-y5-V0I"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1030" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrT-Dl-Lee">
-                                                        <rect key="frame" x="249.5" y="0.0" width="62" height="34.5"/>
+                                                        <rect key="frame" x="249.5" y="0.0" width="62" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="新竹"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="新 竹"/>
                                                         <connections>
                                                             <action selector="selectStopStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="2yi-VX-3Vj"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1035" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAv-aH-5qW">
-                                                        <rect key="frame" x="311.5" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="311.5" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="苗栗"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="苗 栗"/>
                                                         <connections>
                                                             <action selector="selectStopStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="Mq5-ca-rRh"/>
                                                         </connections>
@@ -291,52 +291,52 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bIf-r0-rvv">
-                                                <rect key="frame" x="0.0" y="34.5" width="374" height="34.5"/>
+                                                <rect key="frame" x="0.0" y="54.5" width="374" height="54.5"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="1040" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaP-gF-e2f">
-                                                        <rect key="frame" x="0.0" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="臺中"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="臺 中"/>
                                                         <connections>
                                                             <action selector="selectStopStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="yb0-12-qQm"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1043" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UzV-bF-H9Q">
-                                                        <rect key="frame" x="62.5" y="0.0" width="62" height="34.5"/>
+                                                        <rect key="frame" x="62.5" y="0.0" width="62" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="彰化"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="彰 化"/>
                                                         <connections>
                                                             <action selector="selectStopStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="zBz-9Q-57l"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1047" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgm-Lt-hau">
-                                                        <rect key="frame" x="124.5" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="124.5" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="雲林"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="雲 林"/>
                                                         <connections>
                                                             <action selector="selectStopStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="fjH-k9-oQb"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1050" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOb-Et-TCi">
-                                                        <rect key="frame" x="187" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="187" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="嘉義"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="嘉 義"/>
                                                         <connections>
                                                             <action selector="selectStopStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="JnH-Ts-Nqv"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1060" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzo-Fc-896">
-                                                        <rect key="frame" x="249.5" y="0.0" width="62" height="34.5"/>
+                                                        <rect key="frame" x="249.5" y="0.0" width="62" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="臺南"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="臺 南"/>
                                                         <connections>
                                                             <action selector="selectStopStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="0sd-Ji-EhR"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1070" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGX-7z-3Dh">
-                                                        <rect key="frame" x="311.5" y="0.0" width="62.5" height="34.5"/>
+                                                        <rect key="frame" x="311.5" y="0.0" width="62.5" height="54.5"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="左營"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="左 營"/>
                                                         <connections>
                                                             <action selector="selectStopStation:" destination="47b-uu-w0t" eventType="touchUpInside" id="pmf-gY-mnI"/>
                                                         </connections>
@@ -359,7 +359,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhb-Zm-UBC">
-                                <rect key="frame" x="180" y="211" width="54" height="34"/>
+                                <rect key="frame" x="180" y="251" width="54" height="34"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrow.up.arrow.down" catalog="system"/>
                                 <connections>
@@ -367,13 +367,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選擇日期時間" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqm-c9-opg">
-                                <rect key="frame" x="10" y="384" width="394" height="20.5"/>
+                                <rect key="frame" x="10" y="464" width="394" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="0Uz-Y9-Dbf">
-                                <rect key="frame" x="20" y="424.5" width="374" height="34.5"/>
+                                <rect key="frame" x="20" y="504.5" width="374" height="34.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2X-UB-ZFX">
                                         <rect key="frame" x="0.0" y="0.0" width="242.5" height="34.5"/>
@@ -394,7 +394,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWh-Tj-9Ok">
-                                <rect key="frame" x="20" y="479" width="374" height="34.5"/>
+                                <rect key="frame" x="20" y="559" width="374" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="查詢"/>
                                 <connections>
@@ -425,7 +425,7 @@
                             <constraint firstItem="zWh-Tj-9Ok" firstAttribute="top" secondItem="0Uz-Y9-Dbf" secondAttribute="bottom" constant="20" id="zBw-K4-hYt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="QB6-9S-MdR"/>
+                    <navigationItem key="navigationItem" title="高鐵" id="QB6-9S-MdR"/>
                     <connections>
                         <outlet property="currentButton" destination="Ksj-co-h8B" id="kNe-gT-RcC"/>
                         <outlet property="queryDateButton" destination="f2X-UB-ZFX" id="de5-6D-kt9"/>
@@ -469,16 +469,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fag-DR-CfF">
-                                <rect key="frame" x="0.0" y="498" width="414" height="398"/>
+                                <rect key="frame" x="0.0" y="455" width="414" height="407"/>
                                 <subviews>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="vtG-Z2-v8x">
-                                        <rect key="frame" x="0.0" y="92" width="414" height="216"/>
-                                    </datePicker>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="215" translatesAutoresizingMaskIntoConstraints="NO" id="KI1-ki-keg">
-                                        <rect key="frame" x="10" y="20" width="394" height="34.5"/>
+                                        <rect key="frame" x="10" y="20" width="394" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AaG-I8-ihI">
-                                                <rect key="frame" x="0.0" y="0.0" width="89.5" height="34.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="89.5" height="30"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="取消"/>
                                                 <connections>
@@ -486,7 +483,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FzP-43-wPJ">
-                                                <rect key="frame" x="304.5" y="0.0" width="89.5" height="34.5"/>
+                                                <rect key="frame" x="304.5" y="0.0" width="89.5" height="30"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="確定"/>
                                                 <connections>
@@ -494,15 +491,22 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="KoL-yR-qXv"/>
+                                        </constraints>
                                     </stackView>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="Ja0-yp-lSa">
+                                        <rect key="frame" x="0.0" y="60" width="414" height="327"/>
+                                    </datePicker>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Ja0-yp-lSa" secondAttribute="trailing" id="05a-Jl-4YE"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ja0-yp-lSa" secondAttribute="bottom" constant="20" id="2s7-DS-QZm"/>
                                     <constraint firstAttribute="trailing" secondItem="KI1-ki-keg" secondAttribute="trailing" constant="10" id="33Y-B7-O0X"/>
-                                    <constraint firstItem="vtG-Z2-v8x" firstAttribute="leading" secondItem="fag-DR-CfF" secondAttribute="leading" id="S60-lI-Mwg"/>
+                                    <constraint firstItem="Ja0-yp-lSa" firstAttribute="top" secondItem="KI1-ki-keg" secondAttribute="bottom" constant="10" id="ISO-H1-PuJ"/>
+                                    <constraint firstItem="Ja0-yp-lSa" firstAttribute="leading" secondItem="fag-DR-CfF" secondAttribute="leading" id="dMs-Nh-8Pa"/>
                                     <constraint firstItem="KI1-ki-keg" firstAttribute="leading" secondItem="fag-DR-CfF" secondAttribute="leading" constant="10" id="eRt-I4-fAM"/>
-                                    <constraint firstAttribute="bottom" secondItem="vtG-Z2-v8x" secondAttribute="bottom" constant="90" id="eaa-Ko-mcd"/>
-                                    <constraint firstAttribute="trailing" secondItem="vtG-Z2-v8x" secondAttribute="trailing" id="myU-zA-Cfo"/>
                                     <constraint firstItem="KI1-ki-keg" firstAttribute="top" secondItem="fag-DR-CfF" secondAttribute="top" constant="20" id="wMn-wM-FGD"/>
                                 </constraints>
                             </view>
@@ -511,13 +515,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fag-DR-CfF" firstAttribute="leading" secondItem="K8D-Ap-fSL" secondAttribute="leading" id="8t9-d6-VI8"/>
-                            <constraint firstItem="fag-DR-CfF" firstAttribute="bottom" secondItem="K8D-Ap-fSL" secondAttribute="bottom" constant="83" id="fiT-DW-ObC"/>
+                            <constraint firstItem="fag-DR-CfF" firstAttribute="height" secondItem="K8D-Ap-fSL" secondAttribute="height" multiplier="0.5" id="AAu-Vp-sbW"/>
+                            <constraint firstItem="fag-DR-CfF" firstAttribute="bottom" secondItem="K8D-Ap-fSL" secondAttribute="bottom" id="fiT-DW-ObC"/>
                             <constraint firstItem="K8D-Ap-fSL" firstAttribute="trailing" secondItem="fag-DR-CfF" secondAttribute="trailing" id="hc8-5v-Jpw"/>
-                            <constraint firstItem="fag-DR-CfF" firstAttribute="top" secondItem="K8D-Ap-fSL" secondAttribute="top" constant="450" id="oxS-Xo-8dN"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="THSRDatePicker" destination="vtG-Z2-v8x" id="FCz-Pr-aSH"/>
+                        <outlet property="THSRDatePicker" destination="Ja0-yp-lSa" id="uE4-Uj-05n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJJ-fq-Jgl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -533,16 +537,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSt-LP-mrE">
-                                <rect key="frame" x="0.0" y="92" width="414" height="103"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="110"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4MT-GJ-Bht">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="68.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="75.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="frU-eW-KiC">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="68.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="75.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="AcK-x3-bwf">
-                                                        <rect key="frame" x="0.0" y="14" width="138" height="41"/>
+                                                        <rect key="frame" x="0.0" y="17.5" width="138" height="41"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一般座" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnG-Xr-mi9">
                                                                 <rect key="frame" x="43" y="0.0" width="52" height="20.5"/>
@@ -559,7 +563,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MuF-Av-Qu6">
-                                                        <rect key="frame" x="138" y="14" width="138" height="41"/>
+                                                        <rect key="frame" x="138" y="17.5" width="138" height="41"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自由座" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fh6-qP-0e5">
                                                                 <rect key="frame" x="43" y="0.0" width="52" height="20.5"/>
@@ -576,7 +580,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Wop-zn-iDL">
-                                                        <rect key="frame" x="276" y="14" width="138" height="41"/>
+                                                        <rect key="frame" x="276" y="17.5" width="138" height="41"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商務座" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHj-pw-cLD">
                                                                 <rect key="frame" x="43" y="0.0" width="52" height="20.5"/>
@@ -603,7 +607,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTl-j5-Ts5">
-                                        <rect key="frame" x="0.0" y="68.5" width="414" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="75.5" width="414" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="2023-02-27 臺北→板橋"/>
                                     </button>
@@ -619,7 +623,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ril-Xd-Tru">
-                                <rect key="frame" x="0.0" y="195" width="414" height="618"/>
+                                <rect key="frame" x="0.0" y="202" width="414" height="660"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" systemColor="linkColor"/>
                                 <prototypes>
@@ -738,7 +742,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2Nl-4c-319">
-                                <rect key="frame" x="0.0" y="92" width="414" height="721"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KvB-Zk-reQ"/>
@@ -777,24 +781,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N6v-6A-7TY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2897" y="98"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="ITo-h1-ObV">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="iAg-1c-7qk" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gpt-qv-uiE">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="r0A-nw-htM" kind="relationship" relationship="viewControllers" id="72y-Cw-LYx"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="c4E-qY-TAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2080" y="98"/>
         </scene>
     </scenes>
     <resources>

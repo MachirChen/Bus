@@ -18,8 +18,10 @@ class THSRDatePickerViewController: UIViewController {
     var selectDateAndTime = String()
     var selectTimeHour = String()
     var selectTimeMinute = String()
-    
+
     @IBOutlet weak var THSRDatePicker: UIDatePicker!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +36,9 @@ class THSRDatePickerViewController: UIViewController {
         
         let singleFinger = UITapGestureRecognizer(target: self, action: #selector(hideDatePicker))
         view.addGestureRecognizer(singleFinger)
+        
         setCurrentDateAndTime()
+        //setDatePicker()
         MenuController.shared.fetchTHSRDailyTimetableTrainDates(urlStr: apiUrlStr) { result in
             DispatchQueue.main.async {
                 switch result {
@@ -48,13 +52,8 @@ class THSRDatePickerViewController: UIViewController {
         }
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let controller = segue.destination as? THSRViewController {
-//            controller.selectDateAndTime = selectDateAndTime ?? ""
-//            print("first\(controller.selectDateAndTime)")
-//        }
-//
-//    }
+
+    
     
     @IBAction func checkButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -74,20 +73,20 @@ class THSRDatePickerViewController: UIViewController {
     }
     
     @objc func saveSelectDate() {
-        
+
         let calendar = Calendar.current
         let hour = String(format: "%02d", calendar.component(.hour, from: THSRDatePicker.date))
         let minute = String(format: "%02d", calendar.component(.minute, from: THSRDatePicker.date))
         self.selectTimeHour = hour
         self.selectTimeMinute = minute
-        
+
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm"
         self.selectDateAndTime = formatter.string(from: THSRDatePicker.date)
         print("save\(self.selectDateAndTime)")
     }
-    
-    
+
+
     func setDatePicker() {
         let dateFormatter = DateFormatter()
         let timeZone = TimeZone(identifier: "Asia/Taipei")
@@ -125,9 +124,7 @@ class THSRDatePickerViewController: UIViewController {
         self.selectDateAndTime = formattedDate
     }
     
-    private func setPickerView() {
-        
-    }
+
 
     /*
     // MARK: - Navigation
@@ -141,14 +138,3 @@ class THSRDatePickerViewController: UIViewController {
 
 }
 
-extension THSRDatePickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        <#code#>
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        <#code#>
-    }
-    
-    
-}

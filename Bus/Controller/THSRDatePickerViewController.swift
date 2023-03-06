@@ -38,7 +38,6 @@ class THSRDatePickerViewController: UIViewController {
         view.addGestureRecognizer(singleFinger)
         
         setCurrentDateAndTime()
-        //setDatePicker()
         MenuController.shared.fetchTHSRDailyTimetableTrainDates(urlStr: apiUrlStr) { result in
             DispatchQueue.main.async {
                 switch result {

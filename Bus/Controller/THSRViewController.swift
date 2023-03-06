@@ -8,43 +8,31 @@
 import UIKit
 
 class THSRViewController: UIViewController {
+    // MARK: - Property
     
-    var data = [THSRDailyTimetableOToDResponse]()
-    var apiUrl: String? {
-        get {
-            let startStationID = userDefault.value(forKey: "userStartStation") as! String
-            let stopStationID = userDefault.value(forKey: "userStopStation") as! String
-            let startTimeHour = userDefault.value(forKey: "timeHour") as! String
-            let startTimeMinute = userDefault.value(forKey: "timeMinute") as! String
-            let trainDate = userDefault.value(forKey: "queryDate")
-            let inputDateFormatter = DateFormatter()
-            inputDateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
-            //"yyyy/MM/dd HH:mm"格式轉"yyyy-MM-dd"
-            if let inputDate = inputDateFormatter.date(from: trainDate as! String) {
-                let outputDateFormatter = DateFormatter()
-                outputDateFormatter.dateFormat = "yyyy-MM-dd"
-                let outputDateString = outputDateFormatter.string(from: inputDate)
-                return "https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/DailyTimetable/OD/\(startStationID)/to/\(stopStationID)/\(outputDateString)?%24filter=OriginStopTime%2FDepartureTime%20ge%20%27\(startTimeHour)%3A\(startTimeMinute)%27&%24format=JSON"
-            }
-            return nil
-        }
-        set {
-            
-        }
+    private var data = [THSRDailyTimetableOToDResponse]()
+    private var apiUrl: String? {
+        guard let startStationID = userDefault.string(forKey: "userStartStation"),
+              let stopStationID = userDefault.string(forKey: "userStopStation"),
+              let startTimeHour = userDefault.string(forKey: "timeHour"),
+              let startTimeMinute = userDefault.string(forKey: "timeMinute"),
+              let trainDate = userDefault.string(forKey: "queryDate") else {return nil}
+        let outputDateString = convertDateFormat(inputDate: trainDate)
+        let apiUrl = "https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/DailyTimetable/OD/\(startStationID)/to/\(stopStationID)/\(outputDateString)?%24filter=OriginStopTime%2FDepartureTime%20ge%20%27\(startTimeHour)%3A\(startTimeMinute)%27&%24format=JSON"
+        return apiUrl
     }
     
-    var fareData = [THSROToDFareResponse]()
-    var fareApiUrl: String? {
+    private var fareData = [THSROToDFareResponse]()
+    private var fareApiUrl: String? {
         get {
-            let startStationID = userDefault.value(forKey: "userStartStation") as! String
-            let stopStationID = userDefault.value(forKey: "userStopStation") as! String
+            guard let startStationID = userDefault.string(forKey: "userStartStation"),
+                  let stopStationID = userDefault.string(forKey: "userStopStation") else {return nil}
             let apiUrl = "https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/ODFare/\(startStationID)/to/\(stopStationID)?%24top=30&%24format=JSON"
             return apiUrl
         }
     }
     
     private let userDefault = UserDefaults.standard
-    
     private var stations: [Station] = [
         Station(name: "Nangang", code: "0990"),
         Station(name: "Taipei", code: "1000"),
@@ -61,51 +49,29 @@ class THSRViewController: UIViewController {
     ]
     
     private var selectedStartStation: Station? {
-        guard let code = userDefault.string(forKey: "userStartStation") else {
-            return nil
-        }
+        guard let code = userDefault.string(forKey: "userStartStation") else {return nil}
         return stations.first(where: { $0.code == code })
     }
     
     private var selectedStopStation: Station? {
-        guard let code = userDefault.string(forKey: "userStopStation") else {
-            return nil
-        }
+        guard let code = userDefault.string(forKey: "userStopStation") else {return nil}
         return stations.first(where: { $0.code == code })
     }
     
     private var currentTime: String {
-        
         let now = Date()
         let calendar = Calendar.current
         let hour = String(format: "%02d", calendar.component(.hour, from: now))
         let minute = String(format: "%02d", calendar.component(.minute, from: now))
         userDefault.set(hour, forKey: "timeHour")
         userDefault.set(minute, forKey: "timeMinute")
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm"
         let formattedDate = formatter.string(from: now)
         return formattedDate
     }
     
-    private func setQueryDateButton() {
-        queryDateButton.layer.borderWidth = 3.0
-        queryDateButton.layer.borderColor = UIColor.blue.cgColor
-        queryDateButton.layer.cornerRadius = queryDateButton.bounds.height / 2
-    }
-    
-    private func setCurrentButton() {
-        currentButton.layer.borderWidth = 3.0
-        currentButton.layer.borderColor = UIColor.blue.cgColor
-        currentButton.layer.cornerRadius = currentButton.bounds.height / 2
-    }
-    
-    private func setSearchButton() {
-        searchButton.layer.borderWidth = 3.0
-        searchButton.layer.borderColor = UIColor.blue.cgColor
-        searchButton.layer.cornerRadius = searchButton.bounds.height / 2
-    }
+    // MARK: - IBOulet
     
     @IBOutlet var startStationButtons: [UIButton]!
     @IBOutlet var stopStationButtons: [UIButton]!
@@ -113,96 +79,27 @@ class THSRViewController: UIViewController {
     @IBOutlet weak var currentButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
     
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //車站起始點和終點選擇相關
-        if let startStation = selectedStartStation {
-            setStartStationButton(selected: true, for: startStation)
-        } else {
-            setStartStationButton(selected: true, for: stations.first!)
-            userDefault.set(stations.first!.code, forKey: "userStartStation")
-        }
+        initSelectButton()
         
-        if let stopStation = selectedStopStation {
-            setStopStationButton(selected: true, for: stopStation)
-        } else {
-            setStartStationButton(selected: true, for: stations.first!)
-            userDefault.set(stations.first!.code, forKey: "userStopStation")
-        }
-        
-        setQueryDateButton()
-        setCurrentButton()
-        setSearchButton()
+        //設定button圓角邊線
+        styleButton(queryDateButton)
+        styleButton(currentButton)
+        styleButton(searchButton)
         
         //查詢日期預設為現在時間
-        queryDateButton.setTitle(currentTime, for: .normal)
-        userDefault.set(currentTime, forKey: "queryDate")
+        initDateButtonTitle()
         
-        MenuController.shared.fetchTHSRDailyTimetableStationToStationData(urlStr: apiUrl!) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    self.data = data
-                    print(data.count)
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-        
-        MenuController.shared.fetchTHSRODFareData(urlStr: fareApiUrl!) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let fareData):
-                    self.fareData = fareData
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-        
-        
-//原程式碼
-//        //StartStation
-//        if let userStartStation = userDefault.string(forKey: "userStartStation") {
-//            for button in startStationButtons {
-//                if "\(button.tag)" == userStartStation {
-//                    button.isSelected = true
-//                    print(userStartStation)
-//                } else if "0\(button.tag)" == userStartStation{
-//                    button.isSelected = true
-//                    print("0990")
-//                }
-//            }
-//        } else {
-//            startStationButtons.first?.isSelected = true
-//            self.userStartStation = "0\(startStationButtons.first!.tag)"
-//            print("預設值\(self.userStartStation)")
-//        }
-        
+        fetchData()
+        fetchFareData()
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "THSRTimeTableViewController" {
-            if userDefault.value(forKey: "userStartStation") as! String == userDefault.value(forKey: "userStopStation") as! String {
-                let alert = UIAlertController(title: "溫馨提醒", message: "請選擇不同的起迄站", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "確定", style: .default))
-                present(alert, animated: true)
-            } else if data.isEmpty {
-                let alert = UIAlertController(title: "溫馨提醒", message: "您選擇的時段已無班次，請重新查詢", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "確定", style: .default))
-                present(alert, animated: true)
-                return false
-            } else {
-                return true
-            }
-        }
-        return true
-    }
+    //MARK: - IBAction
     
     @IBAction func selectStartStation(_ sender: UIButton) {
-        
         startStationButtons.forEach({$0.isSelected = false})
         if let selectedStation = stations.first(where: { $0.code == "\(sender.tag)" }) {
             setStartStationButton(selected: true, for: selectedStation)
@@ -211,48 +108,11 @@ class THSRViewController: UIViewController {
             setStartStationButton(selected: true, for: selectedStation)
             userDefault.set(selectedStation.code, forKey: "userStartStation")
         }
-        MenuController.shared.fetchTHSRDailyTimetableStationToStationData(urlStr: apiUrl!) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    self.data = data
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-        
-        MenuController.shared.fetchTHSRODFareData(urlStr: fareApiUrl!) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let fareData):
-                    self.fareData = fareData
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-//原程式碼
-//        startStationButtons.forEach({$0.isSelected = false})
-//        sender.isSelected = true
-//        if sender.tag == 990 {
-//            self.userDefault.set("0\(sender.tag)", forKey: "userStartStation")
-//        } else {
-//            self.userDefault.set("\(sender.tag)", forKey: "userStartStation")
-//        }
-//
-//        let index = startStationButtons.firstIndex(of: sender)!
-//        print(index)
-//        print(sender.tag)
-//        if let userStartStation = userDefault.string(forKey: "userStartStation") {
-//            self.userStartStation = userStartStation
-//            print(self.userStartStation)
-//        }
-        
+        fetchData()
+        fetchFareData()
     }
     
     @IBAction func selectStopStation(_ sender: UIButton) {
-        
         stopStationButtons.forEach({$0.isSelected = false})
         if let selectedStation = stations.first(where: { $0.code == "\(sender.tag)" }) {
             setStopStationButton(selected: true, for: selectedStation)
@@ -261,27 +121,8 @@ class THSRViewController: UIViewController {
             setStopStationButton(selected: true, for: selectedStation)
             userDefault.set(selectedStation.code, forKey: "userStopStation")
         }
-        MenuController.shared.fetchTHSRDailyTimetableStationToStationData(urlStr: apiUrl!) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    self.data = data
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-        
-        MenuController.shared.fetchTHSRODFareData(urlStr: fareApiUrl!) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let fareData):
-                    self.fareData = fareData
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
+        fetchData()
+        fetchFareData()
     }
     
     @IBAction func changeStartWithStopStation(_ sender: Any) {
@@ -289,11 +130,6 @@ class THSRViewController: UIViewController {
         let stopStationCode = userDefault.string(forKey: "userStopStation")
         userDefault.set(stopStationCode, forKey: "userStartStation")
         userDefault.set(startStationCode, forKey: "userStopStation")
-        
-        print(userDefault.string(forKey: "userStartStation"))
-        print(userDefault.string(forKey: "userStopStation"))
-        
-        
         if let newStartStationCode = userDefault.string(forKey: "userStartStation"),
            let newStopStationCode = userDefault.string(forKey: "userStopStation") {
             if let newStartStationButton = startStationButtons.first(where: { $0.tag == Int(newStartStationCode) }) {
@@ -313,9 +149,73 @@ class THSRViewController: UIViewController {
                 stopStationButtons.forEach({$0.isSelected = false})
                 newStopStationButton.isSelected = true
             }
-            
         }
-        
+        fetchData()
+        fetchFareData()
+    }
+    
+    @IBAction func currentTimeButton(_ sender: Any) {
+        let now = Date()
+        let calendar = Calendar.current
+        let hour = String(format: "%02d", calendar.component(.hour, from: now))
+        let minute = String(format: "%02d", calendar.component(.minute, from: now))
+        userDefault.set(hour, forKey: "timeHour")
+        userDefault.set(minute, forKey: "timeMinute")
+        userDefault.set(currentTime, forKey: "queryDate")
+        if let queryDate = userDefault.string(forKey: "queryDate") {
+            queryDateButton.setTitle(queryDate, for: .normal)
+        } else {
+            print("沒東西")
+        }
+        fetchData()
+    }
+    
+    //MARK: - Method
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? THSRDatePickerViewController {
+            controller.delegate = self
+        } else if let controller = segue.destination as? THSRTimeTableViewController {
+            print("THSRTimeTableViewController傳資料")
+            DispatchQueue.main.async {
+                controller.data = self.data
+                controller.fareData = self.fareData
+            }
+        }
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "THSRTimeTableViewController" {
+            if userDefault.value(forKey: "userStartStation") as! String == userDefault.value(forKey: "userStopStation") as! String {
+                let alert = UIAlertController(title: "溫馨提醒", message: "請選擇不同的起迄站", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "確定", style: .default))
+                present(alert, animated: true)
+            } else if data.isEmpty {
+                let alert = UIAlertController(title: "溫馨提醒", message: "您選擇的時段已無班次，請重新查詢", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "確定", style: .default))
+                present(alert, animated: true)
+                return false
+            } else {
+                return true
+            }
+        }
+        return true
+    }
+    
+    private func fetchFareData() {
+        MenuController.shared.fetchTHSRODFareData(urlStr: fareApiUrl!) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let fareData):
+                    self.fareData = fareData
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    private func fetchData() {
         MenuController.shared.fetchTHSRDailyTimetableStationToStationData(urlStr: apiUrl!) { result in
             DispatchQueue.main.async {
                 switch result {
@@ -327,48 +227,47 @@ class THSRViewController: UIViewController {
                 }
             }
         }
-        print("我是交換前\(fareApiUrl)")
-        MenuController.shared.fetchTHSRODFareData(urlStr: fareApiUrl!) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let fareData):
-                    self.fareData = fareData
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-        print("我是fareApiUrl\(fareApiUrl)")
     }
     
-    @IBAction func currentTimeButton(_ sender: Any) {
-        let now = Date()
-        let calendar = Calendar.current
-        let hour = String(format: "%02d", calendar.component(.hour, from: now))
-        let minute = String(format: "%02d", calendar.component(.minute, from: now))
-        userDefault.set(hour, forKey: "timeHour")
-        userDefault.set(minute, forKey: "timeMinute")
+    private func initDateButtonTitle() {
         userDefault.set(currentTime, forKey: "queryDate")
-        if let queryDate = userDefault.value(forKey: "queryDate") as? String {
-            queryDateButton.setTitle(queryDate, for: .normal)
-        } else {
-            print("沒東西")
+        queryDateButton.setTitle(currentTime, for: .normal)
+    }
+    
+    //日期轉換func
+    private func convertDateFormat(inputDate: String) -> String {
+        let inputDateFormatter = DateFormatter()
+        inputDateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        if let inputDate = inputDateFormatter.date(from: inputDate) {
+            let outputDateFormatter = DateFormatter()
+            outputDateFormatter.dateFormat = "yyyy-MM-dd"
+            return outputDateFormatter.string(from: inputDate)
         }
-        MenuController.shared.fetchTHSRDailyTimetableStationToStationData(urlStr: apiUrl!) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    self.data = data
-                case .failure(let error):
-                    print(error)
-                }
-            }
+        return ""
+    }
+    
+    private func styleButton(_ button: UIButton) {
+        button.layer.borderWidth = 3.0
+        button.layer.borderColor = UIColor.blue.cgColor
+        button.layer.cornerRadius = button.bounds.height / 2
+    }
+    
+    private func initSelectButton() {
+        //車站起始點和終點選擇相關
+        if let startStation = selectedStartStation {
+            setStartStationButton(selected: true, for: startStation)
+        } else {
+            setStartStationButton(selected: true, for: stations.first!)
+            userDefault.set(stations.first!.code, forKey: "userStartStation")
+        }
+        
+        if let stopStation = selectedStopStation {
+            setStopStationButton(selected: true, for: stopStation)
+        } else {
+            setStartStationButton(selected: true, for: stations.first!)
+            userDefault.set(stations.first!.code, forKey: "userStopStation")
         }
     }
-        
-//    @IBAction func searchButton(_ sender: UIButton) {
-//        performSegue(withIdentifier: "THSRTimeTableViewController", sender: self)
-//    }
     
     private func setStartStationButton(selected: Bool, for station: Station) {
         if let button = startStationButtons.first(where: { $0.tag == Int(station.code) }){
@@ -385,115 +284,16 @@ class THSRViewController: UIViewController {
             button.isSelected = selected
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+//MARK: - PickerViewDelegate
 
 extension THSRViewController: THSRDatePickerViewControllerDelegate {
     func didReceiveData(data: String, hour: String, minute: String) {
         userDefault.set(data, forKey: "queryDate")
         userDefault.set(hour, forKey: "timeHour")
         userDefault.set(minute, forKey: "timeMinute")
-        queryDateButton.setTitle(userDefault.value(forKey: "queryDate") as? String, for: .normal)
-        MenuController.shared.fetchTHSRDailyTimetableStationToStationData(urlStr: apiUrl!) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    self.data = data
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let controller = segue.destination as? THSRDatePickerViewController {
-            controller.delegate = self
-        } else if let controller = segue.destination as? THSRTimeTableViewController {
-            print("THSRTimeTableViewController傳資料")
-            DispatchQueue.main.async {
-                controller.data = self.data
-                controller.fareData = self.fareData
-                //controller.THSRTimeTableView.reloadData()
-            }
-        }
+        queryDateButton.setTitle(userDefault.string(forKey: "queryDate"), for: .normal)
+        fetchData()
     }
 }
-
-
-
-
-
-//ChatGPT優化程式碼
-/*
-struct Station {
-    let name: String
-    let code: String
-}
-
-class THSRViewController: UIViewController {
-
-    private let userDefaults = UserDefaults.standard
-
-    private var stations: [Station] = [
-        Station(name: "Taipei", code: "0990"),
-        Station(name: "Banqiao", code: "1000"),
-        Station(name: "Taoyuan", code: "1010"),
-        Station(name: "Hsinchu", code: "1020"),
-        // add more stations as needed
-    ]
-
-    private var selectedStartStation: Station? {
-        guard let code = userDefaults.string(forKey: "userStartStation") else {
-            return nil
-        }
-        return stations.first(where: { $0.code == code })
-    }
-
-    private var selectedStopStation: Station? {
-        guard let code = userDefaults.string(forKey: "userStopStation") else {
-            return nil
-        }
-        return stations.first(where: { $0.code == code })
-    }
-
-    @IBOutlet var stationButtons: [UIButton]!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        if let startStation = selectedStartStation {
-            setButton(selected: true, for: startStation)
-        } else {
-            setButton(selected: true, for: stations.first!)
-            userDefaults.set(stations.first!.code, forKey: "userStartStation")
-        }
-
-        // add similar code for stop station selection
-    }
-
-    @IBAction func selectStation(_ sender: UIButton) {
-        guard let selectedStation = stations.first(where: { $0.code == "\(sender.tag)" }) else {
-            return
-        }
-        setButton(selected: true, for: selectedStation)
-        userDefaults.set(selectedStation.code, forKey: "userStartStation")
-        // add similar code for stop station selection
-    }
-
-    private func setButton(selected: Bool, for station: Station) {
-        let button = stationButtons.first(where: { $0.tag == Int(station.code) })
-        button?.isSelected = selected
-    }
-}
-*/

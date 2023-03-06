@@ -12,32 +12,63 @@ protocol THSRDatePickerViewControllerDelegate: AnyObject {
 }
 
 class THSRDatePickerViewController: UIViewController {
+    // MARK: - Property
+    
     weak var delegate: THSRDatePickerViewControllerDelegate?
     let apiUrlStr = "https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/DailyTimetable/TrainDates?%24format=JSON"
     var trainDatesData: THSRDailyTimetableTrainDates?
     var selectDateAndTime = String()
     var selectTimeHour = String()
     var selectTimeMinute = String()
-
     @IBOutlet weak var THSRDatePicker: UIDatePicker!
     
-
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //背景黯淡效果，更專注在選擇日期。
-        let blackView = UIView(frame: UIScreen.main.bounds)
-        blackView.backgroundColor = .black
-        blackView.alpha = 0
-        presentingViewController?.view.addSubview(blackView)
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
-            blackView.alpha = 0.5
-        }
         
+        setBlackView() //背景黯淡效果，更專注在選擇日期。
+        setCurrentDateAndTime()
+        fetchDataAndSetPicker()
         let singleFinger = UITapGestureRecognizer(target: self, action: #selector(hideDatePicker))
         view.addGestureRecognizer(singleFinger)
         
-        setCurrentDateAndTime()
+    }
+    
+    //MARK: - IBAction
+    
+    @IBAction func checkButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+        self.presentingViewController?.view.subviews.last?.removeFromSuperview()
+        delegate?.didReceiveData(data: selectDateAndTime, hour: selectTimeHour, minute: selectTimeMinute)
+    }
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        dismiss(animated: true)
+        self.presentingViewController?.view.subviews.last?.removeFromSuperview()
+    }
+    
+    //MARK: - Method
+    
+    //呼叫dismiss回到前一個viewController，presentingViewController移除blackView。
+    @objc private func hideDatePicker() {
+        dismiss(animated: true, completion: nil)
+        self.presentingViewController?.view.subviews.last?.removeFromSuperview()
+    }
+    
+    @objc private func saveSelectDate() {
+        let calendar = Calendar.current
+        let hour = String(format: "%02d", calendar.component(.hour, from: THSRDatePicker.date))
+        let minute = String(format: "%02d", calendar.component(.minute, from: THSRDatePicker.date))
+        self.selectTimeHour = hour
+        self.selectTimeMinute = minute
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        self.selectDateAndTime = formatter.string(from: THSRDatePicker.date)
+        print("save\(self.selectDateAndTime)")
+    }
+    
+    private func fetchDataAndSetPicker() {
         MenuController.shared.fetchTHSRDailyTimetableTrainDates(urlStr: apiUrlStr) { result in
             DispatchQueue.main.async {
                 switch result {
@@ -51,42 +82,18 @@ class THSRDatePickerViewController: UIViewController {
         }
     }
     
-
-    
-    
-    @IBAction func checkButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-        self.presentingViewController?.view.subviews.last?.removeFromSuperview()
-        delegate?.didReceiveData(data: selectDateAndTime, hour: selectTimeHour, minute: selectTimeMinute)
+    private func setBlackView() {
+        let blackView = UIView(frame: UIScreen.main.bounds)
+        blackView.backgroundColor = .black
+        blackView.alpha = 0
+        presentingViewController?.view.addSubview(blackView)
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
+            blackView.alpha = 0.5
+        }
     }
     
-    @IBAction func cancelButton(_ sender: Any) {
-        dismiss(animated: true)
-        self.presentingViewController?.view.subviews.last?.removeFromSuperview()
-    }
     
-    //呼叫dismiss回到前一個viewController，presentingViewController移除blackView。
-    @objc func hideDatePicker() {
-        dismiss(animated: true, completion: nil)
-        self.presentingViewController?.view.subviews.last?.removeFromSuperview()
-    }
-    
-    @objc func saveSelectDate() {
-
-        let calendar = Calendar.current
-        let hour = String(format: "%02d", calendar.component(.hour, from: THSRDatePicker.date))
-        let minute = String(format: "%02d", calendar.component(.minute, from: THSRDatePicker.date))
-        self.selectTimeHour = hour
-        self.selectTimeMinute = minute
-
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd HH:mm"
-        self.selectDateAndTime = formatter.string(from: THSRDatePicker.date)
-        print("save\(self.selectDateAndTime)")
-    }
-
-
-    func setDatePicker() {
+    private func setDatePicker() {
         let dateFormatter = DateFormatter()
         let timeZone = TimeZone(identifier: "Asia/Taipei")
         let startDate = self.trainDatesData?.StartDate
@@ -106,8 +113,7 @@ class THSRDatePickerViewController: UIViewController {
         }
     }
     
-    func setCurrentDateAndTime() {
-        
+    private func setCurrentDateAndTime() {
         let date = Date()
         let calendar = Calendar.current
         let hour = String(format: "%02d", calendar.component(.hour, from: date))
@@ -115,25 +121,12 @@ class THSRDatePickerViewController: UIViewController {
         self.selectTimeHour = hour
         self.selectTimeMinute = minute
         print("現在時間\(hour):\(minute)")
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         let now = Date()
         let formattedDate = dateFormatter.string(from: now)
         self.selectDateAndTime = formattedDate
     }
-    
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

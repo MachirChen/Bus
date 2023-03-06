@@ -8,6 +8,7 @@
 import UIKit
 
 class THSRTimeTableViewController: UIViewController {
+    // MARK: - Property
     
     var apiUrl = String()
     var data: [THSRDailyTimetableOToDResponse] = []
@@ -27,33 +28,28 @@ class THSRTimeTableViewController: UIViewController {
     @IBOutlet weak var businessSeats: UILabel!
     @IBOutlet weak var seatPriceView: UIView!
     
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setTableView()
         setloadingView()
         starTimer()
-        seatPriceView.layer.borderWidth = 2
-        seatPriceView.layer.borderColor = UIColor.blue.cgColor
-        //setSeatPriceView()
-        
+        setSeatPriceView()
     }
+    
+    //MARK: - Method
     
     private func setSeatPriceView() {
-        let borderLayer = CAShapeLayer()
-        borderLayer.frame = seatPriceView.bounds
-        borderLayer.path = UIBezierPath(rect: seatPriceView.bounds).cgPath
-        borderLayer.lineWidth = 1
-        borderLayer.strokeColor = UIColor.black.cgColor
-        borderLayer.fillColor = UIColor.clear.cgColor
-        seatPriceView.layer.addSublayer(borderLayer)
+        seatPriceView.layer.borderWidth = 2
+        seatPriceView.layer.borderColor = UIColor.blue.cgColor
     }
     
-    func starTimer() {
+    private func starTimer() {
         timer = Timer.scheduledTimer(timeInterval: timerInterval, target: self, selector: #selector(checkData), userInfo: nil, repeats: true)
     }
     
-    @objc func checkData() {
+    @objc private func checkData() {
         
         if !data.isEmpty && !fareData.isEmpty {
             timer?.invalidate()
@@ -101,18 +97,10 @@ class THSRTimeTableViewController: UIViewController {
         nonReservedSeats.text = "$\(nonReservedSeat)"
         businessSeats.text = "$\(businessSeat)"
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
+
+// MARK: - TableViewDataSource & TableViewDelegate
 
 extension THSRTimeTableViewController: UITableViewDataSource, UITableViewDelegate {
     
